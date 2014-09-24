@@ -7,6 +7,11 @@ var PlayerView = Backbone.View.extend({
 
   initialize: function() {
   },
+  events: {
+    'ended': function() {
+      this.model.trigger('ended', this.model);
+    }
+  },
 
   setSong: function(song){
     this.model = song;

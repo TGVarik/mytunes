@@ -7,6 +7,11 @@ describe('LibraryEntryView', function() {
       title: 'Never Gonna Mock You Up',
       url: 'example/url',
     });
+    var library = new Songs(model);
+    var app = new AppModel({library: library});
+
+    // build a view for the top level of the whole app
+
     view = new LibraryEntryView({model: model});
     view.render();
   });
@@ -22,7 +27,7 @@ describe('LibraryEntryView', function() {
     SongModel.prototype.play.restore();
   });
 
-  xit('queues clicked songs', function(){
+  it('queues clicked songs', function(){
     sinon.spy(SongModel.prototype, 'enqueue');
 
     view.$el.children().first().click();
