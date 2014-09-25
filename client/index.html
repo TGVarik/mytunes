@@ -23,7 +23,11 @@
 
     <script>
       $(function(){
-        // set up model objects
+        songData.forEach(function(song, index) {
+          var storedSong = JSON.parse(localStorage.getItem(song.title));
+          if (storedSong) { _.extend(song, storedSong); }
+        });
+
         var library = new Songs(songData);
         var app = new AppModel({library: library});
 
