@@ -7,6 +7,9 @@ var SongModel = Backbone.Model.extend({
   },
   initialize: function() {
   },
+  defaults: {
+    playCount: 0
+  },
   ended: function() {
     this.trigger('ended', this);
   },

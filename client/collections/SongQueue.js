@@ -14,6 +14,7 @@ var SongQueue = Songs.extend({
     }, this);
 
     this.on('dequeue ended', function(song) {
+      song.set('playCount', song.get('playCount') + 1 );
       this.remove(song);
     }, this);
   },
