@@ -16,6 +16,7 @@ var AppModel = Backbone.Model.extend({
     this.set('currentSong', new SongModel());
     if (queuedSongs.length > 0) {
       this.set('songQueue', new SongQueue(queuedSongs));
+      this.set('currentSong', this.get('songQueue').at(0));
     } else {
       this.set('songQueue', new SongQueue());
     }

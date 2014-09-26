@@ -2,13 +2,10 @@
 var LibraryView = Backbone.View.extend({
 
   tagName: "table",
+  id: 'library-view',
 
   initialize: function() {
     this.render();
-
-    this.collection.on('change:playCount', function() {
-      this.render();
-    }, this);
   },
 
   render: function(){
@@ -16,11 +13,19 @@ var LibraryView = Backbone.View.extend({
     // see http://api.jquery.com/detach/
     this.$el.children().detach();
 
-    this.$el.html('<th>Library</th>').append(
-      this.collection.map(function(song){
-        return new LibraryEntryView({model: song}).render();
-      })
-    );
+    var $head = $('<thead />')
+    var $headRow = $('<tr />')
+    $headRow.append($('<th />').text('Artist'));
+    $headRow.append($('<th />').text('Title'));
+    $headRow.append($('<th />').text('Played Count'));
+    $head.append($headRow);
+    var $body = $('<tbody />')
+    $body.append(this.collection.map(function(song){
+      return new LibraryEntryView({model: song}).render();
+    }));
+
+    this.$el.append($head);
+    this.$el.append($body);
   }
 
 });
