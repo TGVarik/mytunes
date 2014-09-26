@@ -1,5 +1,5 @@
 // SongQueue.js - Defines a backbone model class for the song queue.
-window.SongQueue = window.Songs.extend({
+var SongQueue = Songs.extend({
   initialize: function(params){
     this.on('add', function() {
       if (this.length === 1) {
@@ -27,3 +27,4 @@ window.SongQueue = window.Songs.extend({
     this.at(0).play();
   }
 });
+
